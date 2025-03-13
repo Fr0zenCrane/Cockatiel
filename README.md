@@ -23,7 +23,7 @@ cd Cockatiel
 sh ./environment_setup.sh
 ```
 ## Inference
-Run our script `distributed_cockatiel_vidcap.py` to use Cockatiel to generate detailed video captions on single-GPU, multi-GPU, multi-node, we have tested and ensured it works fine under these settings.
+- Run our script `distributed_cockatiel_vidcap.py` to use Cockatiel to generate detailed video captions on single-GPU, multi-GPU, multi-node, we have tested and ensured it works fine under these settings.
 ```
 python -m torch.distributed.launch \
     --nnodes=1 \
@@ -38,7 +38,9 @@ python -m torch.distributed.launch \
 ```
 - To use this script to sample your videos, you need at leaset modify these parameters:
     - **prompt_set**: Normally, you can leave this parameter to its default value. These are the prompts borrowed from [VDCSCORE](https://arxiv.org/abs/2410.03051), which aims at generating detailed, short, object-focused, camera-focused, background-focused video captions, you can prompt Cockatiel to generate these dimension-specifc captions by modifying `prompt_set` to `detailed`, `short`, `main_object`, `camera`, `background`.
-    - **video-list-file**: This is the `.txt` file that contains  the path to the videos to be captioned, each line should contains only one path to a video
+    - **video-list-file**: This is the `.txt` file that contains  the path to the videos to be captioned, each line should contains only one path to a video. Please be cautious, **the video's filename must be different**, since each caption will be saved with the video's name as their saved json filename.
+    - **caption-folder**: This is the directory where we save the generated captions.
+- If you terminate the captioning task by accident, just rerun this script again and it will automatically resume the task from the point where it was last stopped.
 ## Citations
 
 ```
