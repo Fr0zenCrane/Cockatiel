@@ -16,13 +16,29 @@ We release [Cockatiel-13B](https://huggingface.co/Fr0zencr4nE/Cockatiel-13B) and
 
 ## Installation
 
-Use the following scripts can perfectly reproduce the environment utilized by Cockatiel, as we have validated this.
+Run our script `environment_setup.sh ` can perfectly reproduce the environment utilized by Cockatiel, as we have validated this.
 
 ```
-sh ./environment_setup.sh 
+cd Cockatiel
+sh ./environment_setup.sh
 ```
-
-
+## Inference
+Run our script `distributed_cockatiel_vidcap.py` to use Cockatiel to generate detailed video captions on single-GPU, multi-GPU, multi-node, we have tested and ensured it works fine under these settings.
+```
+python -m torch.distributed.launch \
+    --nnodes=1 \
+    --nproc_per_node=8 \
+    --use_env \
+    ddistributed_cockatiel_vidcap.py \
+    --model-path Fr0zencr4nE/Cockatiel-13B \
+    --conv-mode vicuna_v1  \
+    --prompt_set detailed \
+    --video-list-file ./demo_videos.txt \
+    --caption-folder ./caption_results/
+```
+To use this script to sample your videos, you need at leaset modify these parameters:
+- - `prompt_set`: Normally, you can leave this parameter to its default value. These are the prompts borrowed from [VDCSCORE](https://arxiv.org/abs/2410.03051), which aims at generating detailed, short, object-focused, camera-focused, background-focused video captions, you can prompt Cockatiel to generate these dimension-specifc captions by modifying `prompt_set` to `detailed`, `short`, `main_object`, `camera`, `background`.
+  - - `video-list-file`: This is the `.txt` file that contains  the path to the videos to be captioned, each line should contains only one path to a video
 ## Citations
 
 ```
