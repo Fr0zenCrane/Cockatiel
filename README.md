@@ -1,5 +1,5 @@
 # Cockatiel: Ensembling Synthetic and Human Preferenced Training for Detailed Video Caption
-[Arxiv](https://arxiv.org/abs/2503.09279) / [Model](https://huggingface.co/Fr0zencr4nE/Cockatiel-13B) / [Dataset](https://huggingface.co/datasets/Fr0zencr4nE/Cockatiel-4K) [Project](https://sais-fuxi.github.io/projects/cockatiel/)
+[Arxiv](https://arxiv.org/abs/2503.09279) / [Model](https://huggingface.co/Fr0zencr4nE/Cockatiel-13B) / [Dataset](https://huggingface.co/datasets/Fr0zencr4nE/Cockatiel-4K) / [Project](https://sais-fuxi.github.io/projects/cockatiel/)
 
 ## Introduction
 
