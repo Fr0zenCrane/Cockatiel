@@ -23,7 +23,7 @@ cd Cockatiel
 sh ./environment_setup.sh
 ```
 ## Inference
-- Run our script `distributed_cockatiel_vidcap.py` to use Cockatiel to generate detailed video captions on single-GPU, multi-GPU, multi-node, we have tested and ensured it works fine under these settings.
+- Run our script `distributed_cockatiel_vidcap.py` to use Cockatiel to generate detailed video captions. This script supports distributed inference, as a consequence, it works fine under single-GPU, multi-GPU, and multi-node settings, you only need to modify `nnodes` and `nproc_per_node` and write additional code for multi-node communication.
 ```
 python -m torch.distributed.launch \
     --nnodes=1 \
