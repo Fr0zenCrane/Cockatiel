@@ -37,8 +37,8 @@ python -m torch.distributed.launch \
     --caption-folder ./caption_results/
 ```
 - To use this script to sample your videos, you need at leaset modify these parameters:
-    - `prompt_set`: Normally, you can leave this parameter to its default value. These are the prompts borrowed from [VDCSCORE](https://arxiv.org/abs/2410.03051), which aims at generating detailed, short, object-focused, camera-focused, background-focused video captions, you can prompt Cockatiel to generate these dimension-specifc captions by modifying `prompt_set` to `detailed`, `short`, `main_object`, `camera`, `background`.
-    - `video-list-file`: This is the `.txt` file that contains  the path to the videos to be captioned, each line should contains only one path to a video
+    - `*prompt_set*`: Normally, you can leave this parameter to its default value. These are the prompts borrowed from [VDCSCORE](https://arxiv.org/abs/2410.03051), which aims at generating detailed, short, object-focused, camera-focused, background-focused video captions, you can prompt Cockatiel to generate these dimension-specifc captions by modifying `prompt_set` to `detailed`, `short`, `main_object`, `camera`, `background`.
+    - `*video-list-file*`: This is the `.txt` file that contains  the path to the videos to be captioned, each line should contains only one path to a video
 ## Citations
 
 ```
