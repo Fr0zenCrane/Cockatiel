@@ -1,13 +1,14 @@
 # Cockatiel: Ensembling Synthetic and Human Preferenced Training for Detailed Video Caption
-[Arxiv](https://arxiv.org/abs/2503.09279)  [Model](https://huggingface.co/Fr0zencr4nE/Cockatiel-13B)  [Dataset](https://huggingface.co/datasets/Fr0zencr4nE/Cockatiel-4K) [Project](https://sais-fuxi.github.io/projects/cockatiel/)
+[Arxiv](https://arxiv.org/abs/2503.09279) / [Model](https://huggingface.co/Fr0zencr4nE/Cockatiel-13B) / [Dataset](https://huggingface.co/datasets/Fr0zencr4nE/Cockatiel-4K) [Project](https://sais-fuxi.github.io/projects/cockatiel/)
 
 ## Introduction
 
 Video Detailed Captioning (VDC) is a crucial task for vision-language bridging, enabling fine-grained descriptions of complex video content. In this paper, we first comprehensively benchmark current state-of-the-art approaches and systematically identified two critical limitations: biased capability towards specific captioning aspect and misalignment with human preferences. To address these deficiencies, we propose Cockatiel, a novel three-stage training pipeline that ensembles synthetic and human-aligned training for improving VDC performance. In the first stage, we derive a scorer from a meticulously annotated dataset to select synthetic captions high-performing on certain fine-grained video-caption alignment and human-preferred while disregarding others. Then, we train Cockatiel-13B, using this curated dataset to infuse it with assembled model strengths and human preferences. Finally, we further distill Cockatiel-8B from Cockatiel-13B for the ease of usage. Extensive quantitative and qualitative experiments reflect the effectiveness of our method, as we not only set new state-of-the-art performance on VDCSCORE in a dimension-balanced way but also surpass leading alternatives on human preference by a large margin as depicted by the human evaluation results.
 
 ## News
-&#x2705; [2025.03.13] We released the paper, model, inference code and project page of Cockatiel.
-&#x1F525; The annotated dataset and other code are still uploading, which should be finished in days.
+- &#x2705; [2025.03.13] We released the paper, model, inference code and project page of Cockatiel.
+
+- &#x1F525; The annotated dataset and other code are still uploading, which should be finished in days.
 
 
 ## Checkpoints
