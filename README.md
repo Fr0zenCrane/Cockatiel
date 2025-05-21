@@ -31,7 +31,7 @@ python -m torch.distributed.launch \
     --nnodes=1 \
     --nproc_per_node=8 \
     --use_env \
-    ddistributed_cockatiel_vidcap.py \
+    distributed_cockatiel_vidcap.py \
     --model-path Fr0zencr4nE/Cockatiel-13B \
     --conv-mode vicuna_v1  \
     --prompt_set detailed \
