@@ -7,6 +7,7 @@ Video Detailed Captioning (VDC) is a crucial task for vision-language bridging, 
 
 ## News
 - &#x2705; [2025.03.13] We released the paper, model, dataset, inference code and project page of Cockatiel.
+- &#x2705; [2025.05.21] We released the distributed inference code for Cockatiel-Scorer.
 - &#x1F525; The evaluation results for **Cockatiel-13B (currently ranked #1)** and **Cockatiel-8B-Distilled (currently ranked #2)** are now available on the official [VDCSCORE](https://wenhaochai.com/aurora-web/) benchmark leaderboard! The evaluation results of 14 baseline models presented by us are also available on VDCSCORE! Special thanks to the Auroracap team!
 
 ## Checkpoints
