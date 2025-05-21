@@ -26,7 +26,7 @@ cd ..
 ```
 ## Captioner Inference
 
-- Run our script `distributed_cockatiel_vidcap.py` to use Cockatiel to generate detailed video captions. This script supports distributed inference, as a consequence, it works fine under single-GPU, multi-GPU, and multi-node settings, you only need to modify `nnodes` and `nproc_per_node` and write additional code for multi-node communication.
+- Run our script `run_distributed_cockatiel_vidcap.sh` to use Cockatiel to generate detailed video captions. This script supports distributed inference, as a consequence, it works fine under single-GPU, multi-GPU, and multi-node settings, you only need to modify `nnodes` and `nproc_per_node` and write additional code for multi-node communication.
 ```
 python -m torch.distributed.launch \
     --nnodes=1 \
@@ -47,7 +47,7 @@ python -m torch.distributed.launch \
 
 ## Scorer Inference
 
-- Run our script `distributed_cockatiel_scoring.py` to use Cockatiel-Scorer to generate human-aligned caption quality scores for input video captions. This script supports distributed inference, as a consequence, it works fine under single-GPU, multi-GPU, and multi-node settings, you only need to modify `nnodes` and `nproc_per_node` and write additional code for multi-node communication.
+- Run our script `run_distributed_cockatiel_scoring.sh` to use Cockatiel-Scorer to generate human-aligned caption quality scores for input video captions. This script supports distributed inference, as a consequence, it works fine under single-GPU, multi-GPU, and multi-node settings, you only need to modify `nnodes` and `nproc_per_node` and write additional code for multi-node communication.
 ```
 python -m torch.distributed.launch \
     --nnodes=1 \
