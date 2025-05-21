@@ -7,7 +7,7 @@ Video Detailed Captioning (VDC) is a crucial task for vision-language bridging, 
 
 ## News
 - &#x2705; [2025.03.13] We released the paper, model, dataset, inference code and project page of Cockatiel.
-- &#x1F525; [2025.04.22] The evaluation results for **Cockatiel-13B (currently ranked #1)** and **Cockatiel-8B-Distilled (currently ranked #2)** are now available on the official [VDCSCORE](https://wenhaochai.com/aurora-web/) benchmark leaderboard! The evaluation results of 38 baseline models presented by us are also available on VDCSCORE! Special thanks to the Auroracap team!
+- &#x1F525; The evaluation results for **Cockatiel-13B (currently ranked #1)** and **Cockatiel-8B-Distilled (currently ranked #2)** are now available on the official [VDCSCORE](https://wenhaochai.com/aurora-web/) benchmark leaderboard! The evaluation results of 14 baseline models presented by us are also available on VDCSCORE! Special thanks to the Auroracap team!
 
 ## Checkpoints
 We release [Cockatiel-13B](https://huggingface.co/Fr0zencr4nE/Cockatiel-13B) and [Cockatiel-8B](https://huggingface.co/Fr0zencr4nE/Cockatiel-8B), two video detailed captioning models and [Cockatiel-Scorer](https://huggingface.co/Fr0zencr4nE/Cockatiel-Scorer), a human-aligned quality scoring model on detailed video caption.
@@ -24,7 +24,8 @@ cd scaling_on_scales
 python setup.py install
 cd ..
 ```
-## Inference
+## Captioner Inference
+
 - Run our script `distributed_cockatiel_vidcap.py` to use Cockatiel to generate detailed video captions. This script supports distributed inference, as a consequence, it works fine under single-GPU, multi-GPU, and multi-node settings, you only need to modify `nnodes` and `nproc_per_node` and write additional code for multi-node communication.
 ```
 python -m torch.distributed.launch \
@@ -38,11 +39,33 @@ python -m torch.distributed.launch \
     --video-list-file ./demo_videos.txt \
     --caption-folder ./caption_results/
 ```
-- To use this script to sample your videos, you need at leaset modify these parameters:
+- To use this script to caption your videos, you need at leaset modify these parameters:
     - **prompt_set**: Normally, you can leave this parameter to its default value. These are the prompts borrowed from [VDCSCORE](https://arxiv.org/abs/2410.03051), which aims at generating detailed, short, object-focused, camera-focused, background-focused video captions, you can prompt Cockatiel to generate these dimension-specifc captions by modifying `prompt_set` to `detailed`, `short`, `main_object`, `camera`, `background`.
     - **video-list-file**: This is the `.txt` file that contains  the path to the videos to be captioned, each line should contains only one path to a video. Please be cautious, **the video's filename must be different**, since each caption will be saved with the video's name as their saved json filename.
     - **caption-folder**: This is the directory where we save the generated captions.
 - If you terminate the captioning task by accident, just rerun this script again and it will automatically resume the task from the point where it was last stopped.
+
+## Scorer Inference
+
+- Run our script `distributed_cockatiel_scoring.py` to use Cockatiel-Scorer to generate human-aligned caption quality scores for input video captions. This script supports distributed inference, as a consequence, it works fine under single-GPU, multi-GPU, and multi-node settings, you only need to modify `nnodes` and `nproc_per_node` and write additional code for multi-node communication.
+```
+python -m torch.distributed.launch \
+    --nnodes=1 \
+    --nproc_per_node=8\
+    --use_env \
+    distributed_cockatiel_scoring.py \
+    --model-path Fr0zencr4nE/Cockatiel-Scorer \
+    --conv-mode vicuna_v1  \
+    --num-video-frames 8 \
+    --data-json-file ./demo_scoring_videos.json \
+    --result-folder ./scoring_results
+```
+- To use this script to score your videos, you need at leaset modify these parameters:
+
+    - **data-json-file**: This parameter specify the `.json` file containing your input data. The file should be a list of dictionaries, each with two keys: `video` and `captions`. `video` is the path to the video file while `captions` is a string or a list of strings describing the video. **The video's filename must be different**, since the scoring results for each video will be saved with the video's name as their saved json filename.
+    - **result-folder**: This is the directory where we save the human-aligned caption quality scores.
+- If you terminate the captioning task by accident, just rerun this script again and it will automatically resume the task from the point where it was last stopped.
+
 ## Citations
 
 ```
